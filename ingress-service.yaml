@@ -1,0 +1,24 @@
+# ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+spec:
+  rules:
+    - host: gift-finder.com
+      http:
+        paths:
+          - path: /home
+            pathType: Prefix
+            backend:
+              service:
+                name: home-page-service
+                port:
+                  number: 5000
+          - path: /order
+            pathType: Prefix
+            backend:
+              service:
+                name: order-service
+                port:
+                  number: 5001
