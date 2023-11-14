@@ -1,8 +1,12 @@
+
+# Importing models and resources
+import resources
+from models import RevokedTokenModel
 from flask import Flask
+from database import db
 
 from flask_restful import Api
 
-from flask_sqlalchemy import SQLAlchemy
 
 from flask_jwt_extended import JWTManager
 
@@ -13,7 +17,7 @@ app = Flask(__name__)
 api = Api(app)
 
 # Application Configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost/jwt_auth'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:password@localhost/jwt_auth'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -26,7 +30,7 @@ app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 
 # SqlAlchemy object
-db = SQLAlchemy(app)
+# db = SQLAlchemy(app)
 
 # JwtManager object
 jwt = JWTManager(app)
@@ -39,23 +43,27 @@ jwt = JWTManager(app)
 
 #     db.create_all()
 
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
 # Checking that token is in blacklist or not
+def setup_database(app):
+    with app.app_context():
+        db.create_all()
+    # user = User()
+    # user.username = "Tom"
+    # db.session.add(user)
+    # db.session.commit()
 
 
-@jwt.token_in_blacklist_loader
-def check_if_token_in_blacklist(decrypted_token):
+# @jwt.token_in_blocklist_loader
+# def check_if_token_in_blacklist(decrypted_token):
 
-    jti = decrypted_token['jti']
+#     jti = decrypted_token['jti']
 
-    return models.RevokedTokenModel.is_jti_blacklisted(jti)
+#     return models.RevokedTokenModel.is_jti_blacklisted(jti)
 
-
-# Importing models and resources
 
 # Api Endpoints
-
 api.add_resource(resources.UserRegistration, '/registration')
 
 api.add_resource(resources.UserLogin, '/login')

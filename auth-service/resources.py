@@ -2,14 +2,13 @@ from flask_restful import Resource, reqparse
 
 from models import UserModel, RevokedTokenModel
 
-from flask_jwt_extended import (
-    create_access_token,
-    create_refresh_token,
-    jwt_required,
-    jwt_refresh_token_required,
-    get_jwt_identity,
-    get_raw_jwt
-)
+
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import create_refresh_token
+from flask_jwt_extended import get_jwt
+
 
 import pdb
 
@@ -120,7 +119,7 @@ class UserLogoutAccess(Resource):
     @jwt_required
     def post(self):
 
-        jti = get_raw_jwt()['jti']
+        jti = get_jwt()['jti']
 
         try:
             # Revoking access token
@@ -139,10 +138,11 @@ class UserLogoutRefresh(Resource):
     """
     User Logout Refresh Api 
     """
-    @jwt_refresh_token_required
+    # @jwt_refresh_token_required()
+
     def post(self):
 
-        jti = get_raw_jwt()['jti']
+        jti = get_jwt()['jti']
 
         try:
 
@@ -164,7 +164,7 @@ class TokenRefresh(Resource):
     Token Refresh Api
     """
 
-    @jwt_refresh_token_required
+    # @jwt_refresh_token_required()
     def post(self):
 
         # Generating new access token
