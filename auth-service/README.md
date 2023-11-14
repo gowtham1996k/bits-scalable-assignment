@@ -1,3 +1,9 @@
+DB Setup
+
+```
+CREATE DATABASE jwt_auth;
+```
+
 Setup Command
 
 ```

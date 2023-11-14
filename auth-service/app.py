@@ -1,7 +1,7 @@
 
 # Importing models and resources
 import resources
-from models import RevokedTokenModel
+# from models import RevokedTokenModel
 from flask import Flask
 from database import db
 
@@ -47,8 +47,10 @@ jwt = JWTManager(app)
 #     db.create_all()
 # Checking that token is in blacklist or not
 def setup_database(app):
+    db.init_app(app)
     with app.app_context():
         db.create_all()
+
     # user = User()
     # user.username = "Tom"
     # db.session.add(user)
@@ -77,3 +79,5 @@ api.add_resource(resources.TokenRefresh, '/token/refresh')
 api.add_resource(resources.AllUsers, '/users')
 
 api.add_resource(resources.SecretResource, '/secret')
+
+setup_database(app)

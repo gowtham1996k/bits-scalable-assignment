@@ -116,7 +116,7 @@ class UserLogoutAccess(Resource):
     User Logout Api 
     """
 
-    @jwt_required
+    @jwt_required()
     def post(self):
 
         jti = get_jwt()['jti']
@@ -196,6 +196,6 @@ class SecretResource(Resource):
     Secrest Resource Api
     You can create crud operation in this way
     """
-    @jwt_required
+    @jwt_required()
     def get(self):
         return {'answer': 'You are accessing super secret blueprint'}
