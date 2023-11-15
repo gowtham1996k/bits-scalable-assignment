@@ -7,7 +7,6 @@ ENV PYTHONUNBUFFERED 1
 ENV FLASK_APP 'app.py'
 ENV FLASK_DEBUG 1
 
-
 # Set the working directory in the container
 WORKDIR /auth-service
 
@@ -22,7 +21,7 @@ RUN pip install --upgrade pip && \
 COPY . .
 
 # Expose the port on which the application will run
-EXPOSE 5005
+EXPOSE 8080
 
 # Command to run the application
-CMD ["flask", "run"]
+CMD ["flask", "run", "--host=localhost", "--port=8080"]
