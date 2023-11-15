@@ -15,4 +15,4 @@ services:
     ports:
       - "5005:5005"
     links:
-      db
+      - db
