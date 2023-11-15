@@ -24,4 +24,4 @@ COPY . .
 EXPOSE 8080
 
 # Command to run the application
-CMD ["flask", "run", "--port=8080"]
+CMD ["flask", "run", "--host=localhost", "--port=8080"]
