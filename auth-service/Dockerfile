@@ -6,6 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV FLASK_APP 'app.py'
 ENV FLASK_DEBUG 1
+ENV
 
 
 # Set the working directory in the container
@@ -25,4 +26,4 @@ COPY . .
 EXPOSE 5005
 
 # Command to run the application
-CMD ["flask", "run"]
+CMD ["flask", "run", "--port=8000"]
