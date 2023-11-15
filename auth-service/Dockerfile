@@ -7,7 +7,6 @@ ENV PYTHONUNBUFFERED 1
 ENV FLASK_APP 'app.py'
 ENV FLASK_DEBUG 1
 
-
 # Set the working directory in the container
 WORKDIR /auth-service
 
@@ -25,4 +24,4 @@ COPY . .
 EXPOSE 5005
 
 # Command to run the application
-CMD ["flask", "run"]
+CMD ["flask", "run", "--port=5005"]
