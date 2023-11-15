@@ -20,7 +20,7 @@ services:
   auth-service:
     build: ./auth-service
     ports:
-      - "5005:5005"
+      - "5005:80"
     expose:
       - '5005'
     links:
