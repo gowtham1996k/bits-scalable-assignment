@@ -17,7 +17,7 @@ app = Flask(__name__)
 api = Api(app)
 
 # Application Configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:password@localhost/jwt_auth'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:password@db/jwt_auth'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
