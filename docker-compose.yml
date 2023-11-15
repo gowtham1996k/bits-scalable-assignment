@@ -21,6 +21,8 @@ services:
     build: ./auth-service
     ports:
       - "5005:5005"
+    expose:
+      - '5005'
     links:
       - db
     depends_on:
