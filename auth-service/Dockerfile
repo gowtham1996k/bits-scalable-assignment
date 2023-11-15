@@ -21,7 +21,7 @@ RUN pip install --upgrade pip && \
 COPY . .
 
 # Expose the port on which the application will run
-EXPOSE 5005
+EXPOSE 8080
 
 # Command to run the application
-CMD ["flask", "run", "--port=5005"]
+CMD ["flask", "run", "--port=8080"]
